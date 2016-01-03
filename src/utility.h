@@ -78,7 +78,7 @@ struct context_t
     {CONTEXT _ctx;                                                              \
     RtlCaptureContext(&_ctx);                                                   \
     context_.Ebp = _ctx.Ebp; context_.Esp = _ctx.Esp; context_.Eip = _ctx.Eip;  \
-    context_.fp = (UINT_PTR)(((UINT_PTR*)_AddressOfReturnAddress()) - 1);}
+    context_.fp = (UINT_PTR)_ReturnAddress();}
 #define GET_RETURN_ADDRESS(context)  (context.fp)
 #elif defined(_M_X64)
 #define CAPTURE_CONTEXT()                                                       \
@@ -86,7 +86,7 @@ struct context_t
     {CONTEXT _ctx;                                                              \
     RtlCaptureContext(&_ctx);                                                   \
     context_.Rbp = _ctx.Rbp; context_.Rsp = _ctx.Rsp; context_.Rip = _ctx.Rip;  \
-    context_.fp = (UINT_PTR)(((UINT_PTR*)_AddressOfReturnAddress()) - 1);}
+    context_.fp = (UINT_PTR)_ReturnAddress();}
 #define GET_RETURN_ADDRESS(context)  (context.fp)
 #else
 // If you want to retarget Visual Leak Detector to another processor
