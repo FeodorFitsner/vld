@@ -5,7 +5,7 @@ branches:
   except:
     - gh-pages
 
-os: Visual Studio 2015
+os: Visual Studio 2015 RC
 
 environment:
   GTEST_REPEAT: 1
@@ -15,49 +15,12 @@ environment:
     Toolset: v90
     Solution: vld_vs14_wo_mfc.sln
     GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: safe
-    Toolset: v100
-    Solution: vld_vs14_wo_mfc.sln
-    GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: safe
-    Toolset: v110
-    Solution: vld_vs14_wo_mfc.sln
-    GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: safe
-    Toolset: v120_xp
-    Solution: vld_vs14.sln
-  - VldStackWalkMethod: safe
-    Toolset: v140_xp
-    Solution: vld_vs14.sln
-
-  - VldStackWalkMethod: fast
-    Toolset: v90
-    Solution: vld_vs14_wo_mfc.sln
-    GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: fast
-    Toolset: v100
-    Solution: vld_vs14_wo_mfc.sln
-    GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: fast
-    Toolset: v110
-    Solution: vld_vs14_wo_mfc.sln
-    GTEST_FILTER: -*.Mfc*
-  - VldStackWalkMethod: fast
-    Toolset: v120_xp
-    Solution: vld_vs14.sln
-  - VldStackWalkMethod: fast
-    Toolset: v140_xp
-    Solution: vld_vs14.sln
 
 platform:
   - Win32
-  - x64
 
 configuration:
   - Debug_VldRelease
-  - Debug_VldRelease_StaticCrt
-  - Release
-  - Release_StaticCrt
 
 matrix:
   fast_finish: false
@@ -65,13 +28,6 @@ matrix:
 nuget:
   project_feed: true
   disable_publish_on_pr: true
-
-notifications:
-- provider: Webhook
-  url: https://webhooks.gitter.im/e/f26eac97358590c8feca
-  on_build_success: true
-  on_build_failure: true
-  on_build_status_changed: true
 
 build_script:
 - ps: |
