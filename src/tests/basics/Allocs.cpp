@@ -145,7 +145,7 @@ __declspec(noinline) void allocMalloc(bool bFree)
     GetVldFunctions();
     int* leaked_memory = (int*)malloc(78);
     const wchar_t* callstack = VldInternalGetAllocationCallstack(leaked_memory, false);
-    /*if (callstack != NULL)
+    if (callstack != NULL)
     {
         const char* expectedCallstack =
 #ifdef _DLL
@@ -165,10 +165,10 @@ __declspec(noinline) void allocMalloc(bool bFree)
             "\\s+\\S+\\\\allocs\\.cpp \\(\\d+\\): \\w+\\.\\w+!allocmalloc\\(\\).*\n"
             "\\s+\\S+\\\\allocs\\.cpp \\(\\d+\\): \\w+\\.\\w+!allocator<0>::alloc\\(\\) \\+ 0x\\S+ bytes";
         EXPECT_PRED_FORMAT2(AssertCompareCallStacks, callstack, expectedCallstack);
-    }*/
+    }
     int* leaked_memory_dbg = (int*)_malloc_dbg(80, _NORMAL_BLOCK, __FILE__, __LINE__);
     callstack = VldInternalGetAllocationCallstack(leaked_memory_dbg, false);
-    /*if (callstack != NULL)
+    if (callstack != NULL)
     {
         const char* expectedCallstack =
 #ifdef _DLL
@@ -189,7 +189,7 @@ __declspec(noinline) void allocMalloc(bool bFree)
             "\\s+\\S+\\\\allocs\\.cpp \\(\\d+\\): \\w+\\.\\w+!allocmalloc\\(\\).*\n"
             "\\s+\\S+\\\\allocs\\.cpp \\(\\d+\\): \\w+\\.\\w+!allocator<0>::alloc\\(\\) \\+ 0x\\S+ bytes";
         EXPECT_PRED_FORMAT2(AssertCompareCallStacks, callstack, expectedCallstack);
-    }*/
+    }
     if (bFree)
     {
         free(leaked_memory);
